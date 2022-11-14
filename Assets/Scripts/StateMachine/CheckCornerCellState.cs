@@ -18,13 +18,13 @@ namespace StateMachine
                     ShowCell(8, 8); 
                 }
             }
-            ChangeState(new MoveCellsState(_core));
+            ChangeState(new MoveItemsState(_core));
         }
 
         private void ShowCell(int posX, int posY)
         {
             var cell = _core.cells.Find(n => n.posX == posX && n.posY == posY);
-            cell.Show();
+            cell.itemInCell.Show();
         }
     }
 }

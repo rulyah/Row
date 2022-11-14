@@ -20,9 +20,9 @@ namespace UI
         public void Init()
         {
             SwapState.onCellsMove += OnCellsMove;
-            MoveCellsState.onScoreChanged += OnScoreChanged;
-            MoveCellsState.onFirstFruitAmountChanged += OnFirstFruitAmountChanged;
-            MoveCellsState.onSecondFruitAmountChanged += OnSecondFruitAmountChanged;
+            MoveItemsState.onScoreChanged += OnScoreChanged;
+            MoveItemsState.onFirstFruitAmountChanged += OnFirstFruitAmountChanged;
+            MoveItemsState.onSecondFruitAmountChanged += OnSecondFruitAmountChanged;
             _pauseButton.onClick.AddListener(PauseClick);
         }
 

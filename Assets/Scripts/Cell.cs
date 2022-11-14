@@ -1,34 +1,44 @@
 using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
-public class Cell : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class Cell : MonoBehaviour//, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
 
     [SerializeField] private Button _button;
+    public Item itemInCell;
     public int buttonId;
-    public int spriteId;
-    public Image image;
+    //public int spriteId;
+    //public Image image;
 
     public int posX;
     public int posY;
 
-    private Vector3 _movePoint;
-    private Vector3 _currentPos;
-    private Vector3 _startDragPoint;
-    private Vector3 _finishDragPoint;
+    //private Vector3 _movePoint;
+    //private Vector3 _currentPos;
+    //private Vector3 _startDragPoint;
+    //private Vector3 _finishDragPoint;
 
-    private float _tick;
-    private float _duration = 0.2f;
-    private bool _isMove;
+    //private float _tick;
+    //private float _duration = 0.2f;
+    //private bool _isMove;
     
     public event Action<int> onButtonClick;
-    public event Action<int, int> onLeftSwipe;
-    public event Action<int, int> onRightSwipe;
-    public event Action<int, int> onUpSwipe;
-    public event Action<int, int> onDownSwipe;
+    //public event Action<int, int> onLeftSwipe;
+    //public event Action<int, int> onRightSwipe;
+    //public event Action<int, int> onUpSwipe;
+    //public event Action<int, int> onDownSwipe;
+
+    public void RefreshItem()
+    {
+        itemInCell = GetComponentInChildren<Item>();
+    }
+
+    public void DestroyItem()
+    {
+        Destroy(itemInCell.gameObject);
+        itemInCell = null;
+    }
 
     public void Init()
     {
@@ -40,7 +50,7 @@ public class Cell : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         onButtonClick?.Invoke(buttonId);
     }
 
-    public void Move(Vector3 movePoint)
+    /*public void Move(Vector3 movePoint)
     {
         if(_isMove) return;
         _movePoint = movePoint;
@@ -92,7 +102,7 @@ public class Cell : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         return Random.Range(0, 7);
     }
     
-    public void OnBeginDrag(PointerEventData eventData)
+    /*public void OnBeginDrag(PointerEventData eventData)
     {
         _startDragPoint = Input.mousePosition;
     }
@@ -113,5 +123,5 @@ public class Cell : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         else onDownSwipe?.Invoke(buttonId, posY - 1);
     }
 
-    public void OnDrag(PointerEventData eventData){}
+    public void OnDrag(PointerEventData eventData){}*/
 }

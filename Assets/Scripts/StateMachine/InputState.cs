@@ -13,10 +13,10 @@ namespace StateMachine
             foreach (var cell in _core.cells)
             {
                 cell.onButtonClick += OnButtonClick;
-                cell.onDownSwipe += OnVerticalSwipe;
-                cell.onUpSwipe += OnVerticalSwipe;
-                cell.onLeftSwipe += OnHorizontalSwipe;
-                cell.onRightSwipe += OnHorizontalSwipe;
+                cell.itemInCell.onDownSwipe += OnVerticalSwipe;
+                cell.itemInCell.onUpSwipe += OnVerticalSwipe;
+                cell.itemInCell.onLeftSwipe += OnHorizontalSwipe;
+                cell.itemInCell.onRightSwipe += OnHorizontalSwipe;
             }
         }
 
@@ -40,10 +40,10 @@ namespace StateMachine
             foreach (var cell in _core.cells)
             {
                 cell.onButtonClick -= OnButtonClick;
-                cell.onDownSwipe -= OnVerticalSwipe;
-                cell.onUpSwipe -= OnVerticalSwipe;
-                cell.onLeftSwipe -= OnHorizontalSwipe;
-                cell.onRightSwipe -= OnHorizontalSwipe;
+                cell.itemInCell.onDownSwipe -= OnVerticalSwipe;
+                cell.itemInCell.onUpSwipe -= OnVerticalSwipe;
+                cell.itemInCell.onLeftSwipe -= OnHorizontalSwipe;
+                cell.itemInCell.onRightSwipe -= OnHorizontalSwipe;
             }
         }
 
@@ -52,7 +52,7 @@ namespace StateMachine
             if (_core.firstCell == null)
             {
                 _core.firstCell = FindCellByButtonId(buttonId);
-                _core.firstCell.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+                _core.firstCell.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
             }
             else
             {

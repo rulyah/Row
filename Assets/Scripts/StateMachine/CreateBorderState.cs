@@ -18,7 +18,7 @@ namespace StateMachine
                     _core.CreateCell(x, y);
                 }
             }
-            ChangeState(new HideCornerCellState(_core));
+            ChangeState(new HideItemState(_core));
         }
     }
 }

@@ -12,7 +12,7 @@ namespace StateMachine
 
             if (_core.firstCell != null)
             {
-                _core.CellSwap(_core.firstCell, _core.secondCell);
+                _core.ItemSwap(_core.firstCell, _core.secondCell);
                 _core.PlayDelay(0.2f,() =>
                 {
                     ChangeState(new InputState(_core));

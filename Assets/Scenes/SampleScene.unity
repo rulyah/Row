@@ -6635,6 +6635,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _transform: {fileID: 1656691307}
   _cell: {fileID: 4729425631168898079, guid: a82d94f5f1db34d1d8febd1cfc55f578, type: 3}
+  _item: {fileID: 6848296342046286357, guid: 5359d0a7bb1ed4518be931a0dac1dcf1, type: 3}
   _ui: {fileID: 942236806}
   cells: []
   sprites:

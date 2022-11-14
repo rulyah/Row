@@ -12,7 +12,7 @@ namespace StateMachine
         {
             //_core.movesCount++;
             Debug.Log("SwapState");
-            _core.CellSwap(_core.firstCell, _core.secondCell);
+            _core.ItemSwap(_core.firstCell, _core.secondCell);
             
             _core.PlayDelay(0.3f,() =>
             {
