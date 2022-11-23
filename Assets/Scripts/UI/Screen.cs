@@ -13,12 +13,12 @@ namespace UI
             _canvasGroup.blocksRaycasts = true;
         }
 
-        protected void RestartGame()
+        public void RestartGame()
         {
             
         }
 
-        protected virtual void Hide()
+        public virtual void Hide()
         {
             _canvasGroup.alpha = 0;
             _canvasGroup.interactable = false;

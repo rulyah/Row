@@ -23,11 +23,11 @@ namespace UI
 
         public override void Show()
         {
-            base.Show();
             Init();
+            base.Show();
         }
 
-        protected override void Hide()
+        public override void Hide()
         {
             _closeButton.onClick.RemoveListener(Hide);
             _restartButton.onClick.RemoveListener(RestartGame);

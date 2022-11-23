@@ -20,14 +20,14 @@ namespace UI
             Init();
         }
 
-        protected override void Hide()
+        public override void Hide()
         {
             _restartButton.onClick.RemoveListener(RestartGame);
             _nextButton.onClick.RemoveListener(NextLvl);
             base.Hide();
         }
 
-        private void NextLvl()
+        public void NextLvl()
         {
             
         }
