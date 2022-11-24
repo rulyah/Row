@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Configs;
 using UnityEngine;
 
@@ -17,10 +16,22 @@ namespace States
             _checkedSlots = new List<Slot>();
             CheckLine();
             CheckColumn();
-            if (Model.matchList.Count < 3)
+            if (GameConfig.isInput)
             {
-                //ChangeState(new InputState(_core));
-                ChangeState(new SwapBeckState(_core));
+                GameConfig.isInput = false;
+                if (Model.matchList.Count < 3)
+                {
+                    GameConfig.isWrongMove = true;
+                    ChangeState(new SwapState(_core));
+                }
+                else
+                {
+                    ChangeState(new CheckCornerSlotState(_core));
+                }
+            }
+            else if (Model.matchList.Count < 3)
+            {
+                ChangeState(new InputState(_core));
             }
             else
             {
@@ -31,25 +42,18 @@ namespace States
         {
             for (var y = 1; y <= GameConfig.gridSize; y++)
             {
-                //Debug.Log($"chek {y} line");
                 var _slots = _core.slots.FindAll(n => n.posY == y);
                 for (var x = 0; x < _slots.Count - 1; x++)
                 {
-                    //Debug.Log($"Check {x+1} pos");
                     var next = x + 1;
-                    //Debug.Log($"sprite 1 - {x+1} + {y} - {_cells[x].itemInCell.spriteId}");
-                    //Debug.Log($"sprite next {next+1} + {y} - {_cells[next].itemInCell.spriteId}");
 
                     if (_slots[x].itemInSlot.spriteId == _slots[next].itemInSlot.spriteId)
                     {
                         if(!_checkedSlots.Contains(_slots[x])) _checkedSlots.Add(_slots[x]);
-                        //Debug.Log($"sovpalo, {x+1} + {y}  ++++ {next+1} + {y}");
                         if(!_checkedSlots.Contains(_slots[next])) _checkedSlots.Add(_slots[next]);
-                        //Debug.Log($"{_core.checkedCells.Count} in list checked");
                     }
                     else
                     {
-                        //Debug.Log($"Ne sovpalo {_core.checkedCells.Count} in list");
                         if(_checkedSlots.Count < 3) _checkedSlots.Clear();
                         else
                         {
@@ -57,7 +61,6 @@ namespace States
                             {
                                 Model.matchList.Add(_checkedSlots[i]);
                             }
-                            //Debug.Log($"{_core.matchList.Count} in list matchList");
                             _checkedSlots.Clear();
                         }
                     }

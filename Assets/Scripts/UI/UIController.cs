@@ -11,9 +11,33 @@ namespace UI
         [SerializeField] private GameScreen _gameScreen;
 
 
+        public void Init()
+        {
+            _gameScreen.Init();
+            _gameScreen.onPauseButtonClick += OnPauseClick;
+            RemoveMatchItemsState.onScoreChanged += OnUIChanged;
+            RemoveMatchItemsState.onGoalAmountChanged += OnUIChanged;
+        }
+
+        private void OnUIChanged(int value)
+        {
+            Refresh();
+        }
+
+        private void OnPauseClick()
+        {
+            Debug.Log("click");
+            _pauseScreen.Show();
+        }
+
+        public void Refresh()
+        {
+            _gameScreen.Refresh();
+        }
+
         public void SetTask(List<Sprite> sprites)
         {
-            _gameScreen.Refresh(sprites);
+            _gameScreen.SetTask(sprites);
         }
     }
 }

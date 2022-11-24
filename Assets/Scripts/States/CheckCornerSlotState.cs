@@ -13,10 +13,10 @@ namespace States
 
             if (Model.matchList.Any(t => t.posX is 1 or 8))
             {
-                ShowItem(1, 8); 
+                ShowItem(1, 8);
                 ShowItem(8, 8);
             }
-            ChangeState(new SetItemsState(_core));
+            ChangeState(new RemoveMatchItemsState(_core));
         }
         
         private void ShowItem(int posX, int posY)

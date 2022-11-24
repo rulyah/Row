@@ -5,15 +5,16 @@ using UnityEngine;
 
 namespace States
 {
-    public class SetItemsState : State<Core>
+    public class RemoveMatchItemsState : State<Core>
     {
-        public SetItemsState(Core core) : base(core) {}
+        public RemoveMatchItemsState(Core core) : base(core) {}
 
         private List<Item> _hiddenItem;
+        private int _scoreValue;
         
         public static event Action<int> onScoreChanged;
-        public static event Action onFirstGoalAmountChanged;
-        public static event Action onSecondGoalAmountChanged;
+        public static event Action<int> onGoalAmountChanged;
+        //public static event Action onSecondGoalAmountChanged;
 
         public override void OnEnter()
         {
@@ -24,7 +25,7 @@ namespace States
 
         public override void OnExit()
         {
-            onScoreChanged?.Invoke(_core.model.score);
+            onScoreChanged?.Invoke(_scoreValue);
         }
 
         private void RemoveItem()
@@ -34,7 +35,7 @@ namespace States
                 CheckLvlTask(Model.matchList[i]);
                 _hiddenItem.Add(Model.matchList[i].itemInSlot);
                 Model.matchList[i].RemoveItem();
-                _core.model.score += 100;
+                _scoreValue += 10;
                 ChangeItemInSlots(Model.matchList[i]);
             }
             Model.matchList.Clear();
@@ -51,10 +52,8 @@ namespace States
                 nextSlot.SetItem(column[i].itemInSlot);
             }
             column[^1].SetItem(_hiddenItem[0]);
-            //_hiddenItem[0].Move(column[^1]);
-            //_hiddenItem[0].Show();
             _hiddenItem.Remove(_hiddenItem[0]);
-        }
+        }// add random to _hiddenItem
 
         private Slot GetSlotByPos(int posX, int posY)
         {
@@ -65,11 +64,11 @@ namespace States
         {
             if (slot.itemInSlot.spriteId == Model.firstGoalSpriteId)
             {
-                onFirstGoalAmountChanged?.Invoke();
+                onGoalAmountChanged?.Invoke(1);
             }
             if (slot.itemInSlot.spriteId == Model.secondGoalSpriteId)
             {
-                onSecondGoalAmountChanged?.Invoke();
+                onGoalAmountChanged?.Invoke(2);
             }
         }
 

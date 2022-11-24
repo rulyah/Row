@@ -12,7 +12,7 @@ public class Model : MonoBehaviour
     public Slot secondSlot;
     
     public int movesCount;
-    public int score;
+    public static int score;
     public int currentLevel { get; private set; }
     public LevelConfig currentConfig;
     public static int firstGoalSpriteId { get; private set; }
@@ -24,7 +24,27 @@ public class Model : MonoBehaviour
     {
         SetLevelTaskState.onSetTask += OnSetTask;
         matchList = new List<Slot>();
+        RemoveMatchItemsState.onScoreChanged += OnScoreChanged;
+        RemoveMatchItemsState.onGoalAmountChanged += OnGoalAmountChanged;
         //matchSlots = new Stack<Slot>();
+    }
+
+    private void OnGoalAmountChanged(int value)
+    {
+        switch (value)
+        {
+            case 1:
+                firstGoalCount--;
+                break;
+            case 2:
+                secondGoalCount--;
+                break;
+        }
+    }
+
+    private void OnScoreChanged(int value)
+    {
+        score += value;
     }
 
     private void OnSetTask(LevelConfig config)

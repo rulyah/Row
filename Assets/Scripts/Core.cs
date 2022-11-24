@@ -23,6 +23,7 @@ public class Core : MonoBehaviour
     
     private void Start()
     {
+        _uiController.Init();
         model.Init();
         slots = new List<Slot>(104);
         _stateMachine = new StateMachine<Core>(new SetLevelTaskState(this));

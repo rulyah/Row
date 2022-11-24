@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -14,17 +15,20 @@ namespace UI
         [SerializeField] private Image _secondGoalImage;
         [SerializeField] private TextMeshProUGUI _firstGoalText;
         [SerializeField] private TextMeshProUGUI _secondGoalText;
+
+        public event Action onPauseButtonClick;
         
         public void Init()
         {
-            //SwapState.onCellsMove += OnCellsMove;
-            //MoveItemsState.onScoreChanged += OnScoreChanged;
-            //MoveItemsState.onFirstFruitAmountChanged += OnFirstFruitAmountChanged;
-            //MoveItemsState.onSecondFruitAmountChanged += OnSecondFruitAmountChanged;
-            //_pauseButton.onClick.AddListener(PauseClick);
+            _pauseButton.onClick.AddListener(PauseClick);
         }
 
-        public void Refresh(List<Sprite> sprites)
+        private void PauseClick()
+        {
+            onPauseButtonClick?.Invoke();
+        }
+
+        public void SetTask(List<Sprite> sprites)
         {
             _firstGoalImage.sprite = sprites[Model.firstGoalSpriteId];
             _secondGoalImage.sprite = sprites[Model.secondGoalCount];
@@ -32,7 +36,14 @@ namespace UI
             _secondGoalText.text = Model.secondGoalCount.ToString();
         }
 
-        /*private void OnFirstFruitAmountChanged(int amount)
+        public void Refresh()
+        {
+            _firstGoalText.text = Model.firstGoalCount.ToString();
+            _secondGoalText.text = Model.secondGoalCount.ToString();
+            _score.text = Model.score.ToString();
+        }
+
+        private void OnFirstFruitAmountChanged(int amount)
         {
             _firstGoalText.text = amount.ToString();
         }
@@ -51,7 +62,7 @@ namespace UI
         private void OnCellsMove(int moveCount)
         {
             _moves.text = moveCount.ToString();
-        }*/
+        }
 
     }
 }

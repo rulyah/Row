@@ -1,3 +1,4 @@
+using Configs;
 using UnityEngine;
 
 namespace States
@@ -13,7 +14,16 @@ namespace States
             HideSlot(1,8);
             HideSlot(8,8);
             HideSlot(8,1);
-            ChangeState(new CheckGridState(_core));
+            
+            if (GameConfig.isNeedToCheckGrid)
+            {
+                GameConfig.isNeedToCheckGrid = false;
+                ChangeState(new CheckGridState(_core));
+            }
+            else
+            {
+                ChangeState(new InputState(_core));
+            }
         }
 
         private void HideSlot(int posX, int posY)

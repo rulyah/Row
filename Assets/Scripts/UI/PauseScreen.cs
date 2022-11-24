@@ -23,8 +23,9 @@ namespace UI
 
         public override void Show()
         {
-            Init();
+            Debug.Log("show");
             base.Show();
+            Init();
         }
 
         public override void Hide()

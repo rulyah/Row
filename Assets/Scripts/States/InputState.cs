@@ -1,3 +1,4 @@
+using Configs;
 using UnityEngine;
 
 namespace States
@@ -45,6 +46,7 @@ namespace States
                 slot.itemInSlot.onLeftSwipe -= OnHorizontalSwipe;
                 slot.itemInSlot.onRightSwipe -= OnHorizontalSwipe;
             }
+            GameConfig.isInput = true;
         }
 
         private void OnButtonClick(Slot slot)

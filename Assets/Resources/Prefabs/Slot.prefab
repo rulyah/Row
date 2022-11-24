@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5302838013546776997
+--- !u!1 &526026820136838525
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,19 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< Updated upstream:Assets/Prefabs/Cell.prefab
-  - component: {fileID: 4729425631168898051}
-  - component: {fileID: 4729425631168898048}
-  - component: {fileID: 4729425631168898049}
-  - component: {fileID: 4729425631168898050}
-  - component: {fileID: 4729425631168898079}
-=======
-  - component: {fileID: 5302838013546776996}
-  - component: {fileID: 5302838013546777018}
-  - component: {fileID: 5302838013546777019}
-  - component: {fileID: 5302838013546777016}
-  - component: {fileID: 5302838013546777017}
->>>>>>> Stashed changes:Assets/Resources/Prefabs/Slot.prefab
+  - component: {fileID: 526026820136838524}
+  - component: {fileID: 8976187017518894210}
+  - component: {fileID: -1309739305825417129}
   m_Layer: 5
   m_Name: Slot
   m_TagString: Untagged
@@ -28,14 +18,14 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &5302838013546776996
+--- !u!224 &526026820136838524
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5302838013546776997}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 526026820136838525}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -48,77 +38,13 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0.56, y: 0.56}
   m_Pivot: {x: 0.5, y: 0.5}
-<<<<<<< Updated upstream:Assets/Prefabs/Cell.prefab
---- !u!222 &4729425631168898048
-=======
---- !u!222 &5302838013546777018
->>>>>>> Stashed changes:Assets/Resources/Prefabs/Slot.prefab
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream:Assets/Prefabs/Cell.prefab
-  m_GameObject: {fileID: 4729425631168898052}
-  m_CullTransparentMesh: 1
---- !u!114 &4729425631168898049
-=======
-  m_GameObject: {fileID: 5302838013546776997}
-  m_CullTransparentMesh: 1
---- !u!114 &5302838013546777019
->>>>>>> Stashed changes:Assets/Resources/Prefabs/Slot.prefab
+--- !u!114 &8976187017518894210
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream:Assets/Prefabs/Cell.prefab
-  m_GameObject: {fileID: 4729425631168898052}
-=======
-  m_GameObject: {fileID: 5302838013546776997}
->>>>>>> Stashed changes:Assets/Resources/Prefabs/Slot.prefab
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-<<<<<<< Updated upstream:Assets/Prefabs/Cell.prefab
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-=======
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
->>>>>>> Stashed changes:Assets/Resources/Prefabs/Slot.prefab
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-<<<<<<< Updated upstream:Assets/Prefabs/Cell.prefab
-  m_Sprite: {fileID: 21300000, guid: 23c39604c54f9f944ac7791b186f3dce, type: 3}
-=======
-  m_Sprite: {fileID: 0}
->>>>>>> Stashed changes:Assets/Resources/Prefabs/Slot.prefab
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
-<<<<<<< Updated upstream:Assets/Prefabs/Cell.prefab
---- !u!114 &4729425631168898050
-=======
---- !u!114 &5302838013546777016
->>>>>>> Stashed changes:Assets/Resources/Prefabs/Slot.prefab
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5302838013546776997}
+  m_GameObject: {fileID: 526026820136838525}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -152,35 +78,23 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-<<<<<<< Updated upstream:Assets/Prefabs/Cell.prefab
-  m_TargetGraphic: {fileID: 4729425631168898049}
-=======
-  m_TargetGraphic: {fileID: 5302838013546777019}
->>>>>>> Stashed changes:Assets/Resources/Prefabs/Slot.prefab
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5302838013546777017
+--- !u!114 &-1309739305825417129
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5302838013546776997}
+  m_GameObject: {fileID: 526026820136838525}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e32ab905c0fc4404b4a2fc551846dacd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< Updated upstream:Assets/Prefabs/Cell.prefab
-  _button: {fileID: 4729425631168898050}
-  buttonId: 0
-  spriteId: 0
-  image: {fileID: 4729425631168898049}
-=======
-  _button: {fileID: 5302838013546777016}
+  _button: {fileID: 8976187017518894210}
   itemInSlot: {fileID: 0}
->>>>>>> Stashed changes:Assets/Resources/Prefabs/Slot.prefab
   posX: 0
   posY: 0
-  _finishDragPoint: {x: 0, y: 0, z: 0}

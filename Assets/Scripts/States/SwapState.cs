@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using Commands;
+using Configs;
 using UnityEngine;
 
 namespace States
@@ -12,8 +12,18 @@ namespace States
         public override void OnEnter()
         {
             Debug.Log("SwapState");
-            SwapItemCommand.SwapItem(_core.model.firstSlot, _core.model.secondSlot);
-            _core.StartCoroutine(Delay(0.5f, () => ChangeState(new CheckGridState(_core))));
+            var item = _core.model.firstSlot.itemInSlot;
+            _core.model.secondSlot.itemInSlot.Move(_core.model.firstSlot);
+            item.Move(_core.model.secondSlot);
+            if (GameConfig.isWrongMove)
+            {
+                GameConfig.isWrongMove = false;
+                _core.StartCoroutine(Delay(0.5f, () => ChangeState(new InputState(_core))));
+            }
+            else
+            {
+                _core.StartCoroutine(Delay(0.5f, () => ChangeState(new CheckGridState(_core))));
+            }
         }
         
         private IEnumerator Delay(float waitTime, Action action)
