@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace UI
 {
@@ -6,6 +8,7 @@ namespace UI
     {
         [SerializeField] private CanvasGroup _canvasGroup;
 
+        public static event Action onGameRestart;
         public virtual void Show()
         {
             _canvasGroup.alpha = 1;
@@ -15,7 +18,8 @@ namespace UI
 
         public void RestartGame()
         {
-            
+            onGameRestart?.Invoke();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         public virtual void Hide()

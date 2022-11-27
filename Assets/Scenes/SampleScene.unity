@@ -3531,7 +3531,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 70a6d98c6ce034e43b79bfaa3805fb06, type: 2}
   m_sharedMaterial: {fileID: -5263338218149616523, guid: 70a6d98c6ce034e43b79bfaa3805fb06, type: 2}
@@ -3640,7 +3640,6 @@ MonoBehaviour:
   firstSlot: {fileID: 0}
   secondSlot: {fileID: 0}
   movesCount: 0
-  score: 0
   currentConfig: {fileID: 0}
 --- !u!4 &801243675
 Transform:
@@ -4833,7 +4832,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 70a6d98c6ce034e43b79bfaa3805fb06, type: 2}
   m_sharedMaterial: {fileID: -5263338218149616523, guid: 70a6d98c6ce034e43b79bfaa3805fb06, type: 2}

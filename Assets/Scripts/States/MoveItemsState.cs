@@ -11,12 +11,18 @@ namespace States
         public override void OnEnter()
         {
             Debug.Log("MoveItemsState");
-
-            foreach (var slot in _core.slots)
+            if (Model.firstGoalCount <= 0 && Model.secondGoalCount <= 0)
             {
-                slot.MoveItemToSlot();
+                ChangeState(new VictoryState(_core)); 
             }
-            _core.StartCoroutine(Delay(0.2f, () => ChangeState(new ShowHiddenItemsState(_core))));
+            else
+            {
+                foreach (var slot in _core.slots)
+                {
+                    slot.MoveItemToSlot();
+                }
+                _core.StartCoroutine(Delay(0.2f, () => ChangeState(new ShowHiddenItemsState(_core))));
+            }
         }
         
         private IEnumerator Delay(float waitTime, Action action)

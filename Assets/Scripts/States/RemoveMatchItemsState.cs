@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace States
 {
@@ -13,8 +14,8 @@ namespace States
         private int _scoreValue;
         
         public static event Action<int> onScoreChanged;
-        public static event Action<int> onGoalAmountChanged;
-        //public static event Action onSecondGoalAmountChanged;
+        public static event Action onFirstGoalAmountChanged;
+        public static event Action onSecondGoalAmountChanged;
 
         public override void OnEnter()
         {
@@ -52,8 +53,15 @@ namespace States
                 nextSlot.SetItem(column[i].itemInSlot);
             }
             column[^1].SetItem(_hiddenItem[0]);
+            SetNewSprite(_hiddenItem[0]);
             _hiddenItem.Remove(_hiddenItem[0]);
-        }// add random to _hiddenItem
+        }
+
+        private void SetNewSprite(Item item)
+        {
+            item.SetRandomSpriteId();
+            item.image.sprite = _core.sprites[item.spriteId];
+        }
 
         private Slot GetSlotByPos(int posX, int posY)
         {
@@ -64,11 +72,11 @@ namespace States
         {
             if (slot.itemInSlot.spriteId == Model.firstGoalSpriteId)
             {
-                onGoalAmountChanged?.Invoke(1);
+                onFirstGoalAmountChanged?.Invoke();
             }
             if (slot.itemInSlot.spriteId == Model.secondGoalSpriteId)
             {
-                onGoalAmountChanged?.Invoke(2);
+                onSecondGoalAmountChanged?.Invoke();
             }
         }
 

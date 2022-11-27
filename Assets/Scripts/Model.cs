@@ -1,20 +1,18 @@
 using System.Collections.Generic;
 using Configs;
 using States;
+using UI;
 using UnityEngine;
+using Screen = UI.Screen;
 
 public class Model : MonoBehaviour
 {
     public static List<Slot> matchList;
-    //public Stack<Slot> matchSlots;
-    
-    public Slot firstSlot;
-    public Slot secondSlot;
     
     public int movesCount;
     public static int score;
-    public int currentLevel { get; private set; }
-    public LevelConfig currentConfig;
+    //public int currentLevel { get; private set; } = 1;
+    //public LevelConfig currentConfig;
     public static int firstGoalSpriteId { get; private set; }
     public static int secondGoalSpriteId { get; private set; }
     public static int firstGoalCount { get; private set; }
@@ -25,20 +23,29 @@ public class Model : MonoBehaviour
         SetLevelTaskState.onSetTask += OnSetTask;
         matchList = new List<Slot>();
         RemoveMatchItemsState.onScoreChanged += OnScoreChanged;
-        RemoveMatchItemsState.onGoalAmountChanged += OnGoalAmountChanged;
-        //matchSlots = new Stack<Slot>();
+        RemoveMatchItemsState.onFirstGoalAmountChanged += OnFirstGoalAmountChanged;
+        RemoveMatchItemsState.onSecondGoalAmountChanged += OnSecondGoalAmountChanged;
+        Screen.onGameRestart += Refresh;
+        
     }
 
-    private void OnGoalAmountChanged(int value)
+    private void OnFirstGoalAmountChanged()
     {
-        switch (value)
+        firstGoalCount--;
+        if (firstGoalCount <= 0)
         {
-            case 1:
-                firstGoalCount--;
-                break;
-            case 2:
-                secondGoalCount--;
-                break;
+            firstGoalCount = 0;
+            RemoveMatchItemsState.onFirstGoalAmountChanged -= OnFirstGoalAmountChanged;
+        }
+    }
+    
+    private void OnSecondGoalAmountChanged()
+    {
+        secondGoalCount--;
+        if (secondGoalCount <= 0)
+        {
+            secondGoalCount = 0;
+            RemoveMatchItemsState.onSecondGoalAmountChanged -= OnSecondGoalAmountChanged;
         }
     }
 
@@ -53,7 +60,24 @@ public class Model : MonoBehaviour
         secondGoalSpriteId = config.secondTaskSpriteId;
         firstGoalCount = config.firstTaskCount;
         secondGoalCount = config.secondTaskCount;
-        currentLevel = config.levelId;
-        currentConfig = config;
+        GameConfig.currentLevel = config.levelId;
+        GameConfig._currentLevelConfig = config;
+    }
+
+    private void Refresh()
+    {
+        matchList.Clear();
+        movesCount = 0;
+        score = 0;
+        Restart();
+    }
+
+    private void Restart()
+    {
+        SetLevelTaskState.onSetTask -= OnSetTask;
+        RemoveMatchItemsState.onScoreChanged -= OnScoreChanged;
+        RemoveMatchItemsState.onFirstGoalAmountChanged -= OnFirstGoalAmountChanged;
+        RemoveMatchItemsState.onSecondGoalAmountChanged -= OnSecondGoalAmountChanged;
+        Screen.onGameRestart -= Refresh;
     }
 }

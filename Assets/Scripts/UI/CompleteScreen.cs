@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ namespace UI
         [SerializeField] private Button _restartButton;
         [SerializeField] private Button _nextButton;
 
+        public static event Action onNextLevelClick;
         private void Init()
         {
             _restartButton.onClick.AddListener(RestartGame);
@@ -29,7 +31,7 @@ namespace UI
 
         public void NextLvl()
         {
-            
+            onNextLevelClick?.Invoke();
         }
     }
 }

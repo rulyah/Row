@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Configs;
 using States;
 using UI;
 using UnityEngine;
@@ -26,7 +27,7 @@ public class Core : MonoBehaviour
         _uiController.Init();
         model.Init();
         slots = new List<Slot>(104);
-        _stateMachine = new StateMachine<Core>(new SetLevelTaskState(this));
+        _stateMachine = new StateMachine<Core>(new SetLevelTaskState(this, GameConfig.currentLevel));
     }
 }
 

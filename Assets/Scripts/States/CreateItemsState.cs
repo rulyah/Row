@@ -1,4 +1,4 @@
-using Commands;
+using Configs;
 using UnityEngine;
 
 namespace States
@@ -13,7 +13,7 @@ namespace States
             for (var i = 0; i < _core.slots.Count; i++)
             {
                 var item = _core.fabric.CreateItem();
-                item.spriteId = _core.model.currentConfig.spriteId[i];
+                item.spriteId = GameConfig._currentLevelConfig.spriteId[i];
                 item.image.sprite = _core.sprites[item.spriteId];
                 item.SetParent(_core.slots[i]);
                 item.transform.localPosition = Vector3.zero;

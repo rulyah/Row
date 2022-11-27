@@ -36,11 +36,15 @@ namespace UI
             _secondGoalText.text = Model.secondGoalCount.ToString();
         }
 
-        public void Refresh()
+        public void ScoreRefresh()
+        {
+            _score.text = Model.score.ToString();
+        }
+
+        public void GoalCountRefresh()
         {
             _firstGoalText.text = Model.firstGoalCount.ToString();
             _secondGoalText.text = Model.secondGoalCount.ToString();
-            _score.text = Model.score.ToString();
         }
 
         private void OnFirstFruitAmountChanged(int amount)

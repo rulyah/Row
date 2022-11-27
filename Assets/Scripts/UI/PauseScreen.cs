@@ -15,7 +15,7 @@ namespace UI
             _restartButton.onClick.AddListener(RestartGame);
             _exitButton.onClick.AddListener(ExitGame);
         }
-
+        
         private void ExitGame()
         {
             Application.Quit();

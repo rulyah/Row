@@ -9,8 +9,9 @@ namespace States
 
         public override void OnEnter()
         {
+            if(GameConfig.isVictory) ChangeState(new VictoryState(_core));
             Debug.Log("InputState");
-            if(_core.model.firstSlot != null) ResetSelection();
+            if(GameConfig.firstSlot != null) ResetSelection();
             foreach (var slot in _core.slots)
             {
                 slot.onButtonClick += OnButtonClick;
@@ -24,15 +25,15 @@ namespace States
         private void OnVerticalSwipe(Slot slot, int nextPosY)
         {
             if (!CanSwap(nextPosY)) return;
-            _core.model.firstSlot = slot;
-            _core.model.secondSlot = _core.slots.Find(n => n.posX == _core.model.firstSlot.posX && n.posY == nextPosY);
+            GameConfig.firstSlot = slot;
+            GameConfig.secondSlot = _core.slots.Find(n => n.posX == GameConfig.firstSlot.posX && n.posY == nextPosY);
             ChangeState(new SwapState(_core));
         }
         private void OnHorizontalSwipe(Slot slot, int nextPosX)
         {
             if (!CanSwap(nextPosX)) return;
-            _core.model.firstSlot = slot; 
-            _core.model.secondSlot = _core.slots.Find(n => n.posY == _core.model.firstSlot.posY && n.posX == nextPosX);
+            GameConfig.firstSlot = slot; 
+            GameConfig.secondSlot = _core.slots.Find(n => n.posY == GameConfig.firstSlot.posY && n.posX == nextPosX);
             ChangeState(new SwapState(_core));
         }
 
@@ -51,18 +52,18 @@ namespace States
 
         private void OnButtonClick(Slot slot)
         {
-            if (_core.model.firstSlot == null)
+            if (GameConfig.firstSlot == null)
             {
-                _core.model.firstSlot = slot;
-                _core.model.firstSlot.itemInSlot.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
+                GameConfig.firstSlot = slot;
+                GameConfig.firstSlot.itemInSlot.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
             }
             else
             {
-                _core.model.secondSlot = slot;
-                _core.model.firstSlot.itemInSlot.transform.localScale = Vector3.one;
-                if (_core.model.firstSlot != _core.model.secondSlot)
+                GameConfig.secondSlot = slot;
+                GameConfig.firstSlot.itemInSlot.transform.localScale = Vector3.one;
+                if (GameConfig.firstSlot != GameConfig.secondSlot)
                 {
-                    var distance = Vector3.Distance(_core.model.firstSlot.transform.position, _core.model.secondSlot.transform.position);
+                    var distance = Vector3.Distance(GameConfig.firstSlot.transform.position, GameConfig.secondSlot.transform.position);
                     if (distance < 0.65f)
                     {
                         ChangeState(new SwapState(_core));
@@ -81,8 +82,8 @@ namespace States
         
         private void ResetSelection()
         {
-            _core.model.firstSlot = null;
-            _core.model.secondSlot = null;
+            GameConfig.firstSlot = null;
+            GameConfig.secondSlot = null;
         }
 
         private bool CanSwap(int nextPos)

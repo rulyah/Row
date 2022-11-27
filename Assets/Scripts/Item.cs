@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class Item : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
@@ -58,6 +59,12 @@ public class Item : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         spriteId = _previousSpriteId;
         image.color = new Color(255, 255, 255, 255);
         isHide = false;
+    }
+
+    public void SetRandomSpriteId()
+    {
+        spriteId = Random.Range(0, 7);
+        _previousSpriteId = spriteId;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
