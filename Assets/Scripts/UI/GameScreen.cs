@@ -15,8 +15,15 @@ namespace UI
         [SerializeField] private Image _secondGoalImage;
         [SerializeField] private TextMeshProUGUI _firstGoalText;
         [SerializeField] private TextMeshProUGUI _secondGoalText;
+        [SerializeField] private Slider _slider;
+        [SerializeField] private List<Star> _stars;
 
-        public event Action onPauseButtonClick;
+        public static event Action onPauseButtonClick;
+
+        private int _currentStarsCount;
+        private int _firstGoalCount;
+        private int _secondGoalCount;
+        private float _currentSliderValue;
         
         public void Init()
         {
@@ -31,9 +38,11 @@ namespace UI
         public void SetTask(List<Sprite> sprites)
         {
             _firstGoalImage.sprite = sprites[Model.firstGoalSpriteId];
-            _secondGoalImage.sprite = sprites[Model.secondGoalCount];
+            _secondGoalImage.sprite = sprites[Model.secondGoalSpriteId];
             _firstGoalText.text = Model.firstGoalCount.ToString();
             _secondGoalText.text = Model.secondGoalCount.ToString();
+            _firstGoalCount = Model.firstGoalCount;
+            _secondGoalCount = Model.secondGoalCount;
         }
 
         public void ScoreRefresh()
@@ -41,32 +50,26 @@ namespace UI
             _score.text = Model.score.ToString();
         }
 
+        public void MoveRefresh()
+        {
+            _moves.text = Model.movesCount.ToString();
+        }
+
         public void GoalCountRefresh()
         {
             _firstGoalText.text = Model.firstGoalCount.ToString();
             _secondGoalText.text = Model.secondGoalCount.ToString();
+            _slider.value = 1 - (float)(Model.firstGoalCount + Model.secondGoalCount) / (_firstGoalCount + _secondGoalCount);
+            if(_slider.value > 0.25f) ShowStar(_stars[0]);
+            if(_slider.value > 0.6f) ShowStar(_stars[1]);
+            if(_slider.value > 0.99f) ShowStar(_stars[2]);
         }
 
-        private void OnFirstFruitAmountChanged(int amount)
+        private void ShowStar(Star star)
         {
-            _firstGoalText.text = amount.ToString();
+            if (star.isVisible == true) return;
+            star.ShowStar();
+            _currentStarsCount++;
         }
-
-        private void OnSecondFruitAmountChanged(int amount)
-        {
-            _secondGoalText.text = amount.ToString();
-        }
-
-
-        private void OnScoreChanged(int scoreCount)
-        {
-            _score.text = scoreCount.ToString();
-        }
-
-        private void OnCellsMove(int moveCount)
-        {
-            _moves.text = moveCount.ToString();
-        }
-
     }
 }

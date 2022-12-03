@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Fabric : MonoBehaviour
+public class Factory : MonoBehaviour
 {
     [SerializeField] private Slot _slotPrefab;
     [SerializeField] private Item _itemPrefab;

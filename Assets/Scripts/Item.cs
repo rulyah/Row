@@ -50,7 +50,7 @@ public class Item : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         _parent = null;
         _previousSpriteId = spriteId;
         image.color = new Color(255, 255, 255, 0);
-        spriteId = 10;
+        spriteId = -1;
         isHide = true;
     }
 

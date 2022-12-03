@@ -25,7 +25,7 @@ namespace States
                 _core.StartCoroutine(Delay(0.5f, () => ChangeState(new CheckGridState(_core))));
             }
         }
-        
+
         private IEnumerator Delay(float waitTime, Action action)
         {
             yield return new WaitForSeconds(waitTime);

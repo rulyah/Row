@@ -14,8 +14,7 @@ namespace States
         private int _scoreValue;
         
         public static event Action<int> onScoreChanged;
-        public static event Action onFirstGoalAmountChanged;
-        public static event Action onSecondGoalAmountChanged;
+        public static event Action onGoalAmountChanged;
 
         public override void OnEnter()
         {
@@ -72,12 +71,13 @@ namespace States
         {
             if (slot.itemInSlot.spriteId == Model.firstGoalSpriteId)
             {
-                onFirstGoalAmountChanged?.Invoke();
+                if(Model.firstGoalCount > 0) Model.firstGoalCount--;
             }
             if (slot.itemInSlot.spriteId == Model.secondGoalSpriteId)
             {
-                onSecondGoalAmountChanged?.Invoke();
+                if(Model.secondGoalCount > 0) Model.secondGoalCount--;
             }
+            onGoalAmountChanged?.Invoke();
         }
 
         private IEnumerator ChangMatchItemsScale(Action action)

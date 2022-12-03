@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace UI
 {
@@ -19,7 +18,6 @@ namespace UI
         public void RestartGame()
         {
             onGameRestart?.Invoke();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         public virtual void Hide()

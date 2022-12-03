@@ -422,6 +422,8 @@ GameObject:
   - component: {fileID: 54111074}
   - component: {fileID: 54111076}
   - component: {fileID: 54111075}
+  - component: {fileID: 54111077}
+  - component: {fileID: 54111078}
   m_Layer: 5
   m_Name: Star3
   m_TagString: Untagged
@@ -487,6 +489,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 54111073}
   m_CullTransparentMesh: 1
+--- !u!225 &54111077
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54111073}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!114 &54111078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54111073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4628694dee614f8db9e16cb1d51fc6dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canvasGroup: {fileID: 54111077}
+  isVisible: 0
 --- !u!1 &62654014
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,6 +768,11 @@ MonoBehaviour:
   _secondGoalImage: {fileID: 918654066}
   _firstGoalText: {fileID: 978098191}
   _secondGoalText: {fileID: 793760983}
+  _slider: {fileID: 1993484814}
+  _stars:
+  - {fileID: 2128844172}
+  - {fileID: 360274258}
+  - {fileID: 54111078}
 --- !u!1 &105547584
 GameObject:
   m_ObjectHideFlags: 0
@@ -1472,6 +1505,8 @@ GameObject:
   - component: {fileID: 360274254}
   - component: {fileID: 360274256}
   - component: {fileID: 360274255}
+  - component: {fileID: 360274257}
+  - component: {fileID: 360274258}
   m_Layer: 5
   m_Name: Star2
   m_TagString: Untagged
@@ -1537,6 +1572,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 360274253}
   m_CullTransparentMesh: 1
+--- !u!225 &360274257
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360274253}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!114 &360274258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360274253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4628694dee614f8db9e16cb1d51fc6dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canvasGroup: {fileID: 360274257}
+  isVisible: 0
 --- !u!1 &390574510
 GameObject:
   m_ObjectHideFlags: 0
@@ -3637,10 +3698,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92cec41b1bcd4b5f967add41c585b687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstSlot: {fileID: 0}
-  secondSlot: {fileID: 0}
-  movesCount: 0
-  currentConfig: {fileID: 0}
 --- !u!4 &801243675
 Transform:
   m_ObjectHideFlags: 0
@@ -5913,7 +5970,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.0627451}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6752,7 +6809,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5b0c287fddf11b24d910a6b285ee1807, type: 3}
   - {fileID: 21300000, guid: 50dd2e8acaa7426438d693e39eb73026, type: 3}
   - {fileID: 21300000, guid: 140169fe467b8b649aa2541e0c8d6c09, type: 3}
-  _fabric: {fileID: 1644657200}
+  _factory: {fileID: 0}
   slots: []
 --- !u!1 &1671738389
 GameObject:
@@ -7373,6 +7430,7 @@ MonoBehaviour:
   _canvasGroup: {fileID: 1822926020}
   _restartButton: {fileID: 1542601028}
   _nextButton: {fileID: 1079403118}
+  _score: {fileID: 1000422639}
 --- !u!1 &1853065738
 GameObject:
   m_ObjectHideFlags: 0
@@ -7947,7 +8005,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1993484815}
   m_FillRect: {fileID: 705501224}
   m_HandleRect: {fileID: 0}
@@ -8295,6 +8353,8 @@ GameObject:
   - component: {fileID: 2128844168}
   - component: {fileID: 2128844170}
   - component: {fileID: 2128844169}
+  - component: {fileID: 2128844171}
+  - component: {fileID: 2128844172}
   m_Layer: 5
   m_Name: Star1
   m_TagString: Untagged
@@ -8360,3 +8420,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2128844167}
   m_CullTransparentMesh: 1
+--- !u!225 &2128844171
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128844167}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!114 &2128844172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128844167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4628694dee614f8db9e16cb1d51fc6dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canvasGroup: {fileID: 2128844171}
+  isVisible: 0

@@ -21,7 +21,7 @@ namespace States
             {
                 for (var y = 1; y <= GameConfig.gridSize + _maskSlotLine; y++)
                 {
-                    var slot = _core.fabric.CreateSlot();
+                    var slot = _core.factory.CreateSlot();
                     slot.transform.SetParent(_core.transform);
                     var slotRect = slot.GetComponent<RectTransform>();
                     slotRect.sizeDelta = new Vector2(0.56f, 0.56f);

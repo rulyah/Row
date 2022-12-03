@@ -1,7 +1,7 @@
-using System;
 using Configs;
 using UI;
-using UnityEngine.SceneManagement;
+using UnityEngine;
+using Screen = UI.Screen;
 
 namespace States
 {
@@ -9,21 +9,31 @@ namespace States
     {
         public VictoryState(Core core) : base(core) {}
 
-        public static event Action onVictory;
         public override void OnEnter()
         {
+            Debug.Log("VictoryState");
+            _core.uiController.ShowScreen(_core.uiController.completeScreen);
             CompleteScreen.onNextLevelClick += OnNextLevelClick;
-            onVictory?.Invoke();
+            Screen.onGameRestart += onGameRestart;
         }
 
         public override void OnExit()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            CompleteScreen.onNextLevelClick -= OnNextLevelClick;
+            Screen.onGameRestart -= onGameRestart;
+            _core.uiController.CloseLastScreen();
+            GameConfig.isVictory = false;
         }
 
         private void OnNextLevelClick()
         {
             GameConfig.currentLevel++;
+            ChangeState(new SetLevelTaskState(_core, GameConfig.currentLevel));
+        }
+
+        private void onGameRestart()
+        {
+            ChangeState(new RestartGameState(_core));
         }
     }
 }

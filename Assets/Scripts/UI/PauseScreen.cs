@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,11 +11,17 @@ namespace UI
         [SerializeField] private Button _restartButton;
         [SerializeField] private Button _exitButton;
 
+        public static event Action onCloseScreenClick;
         private void Init()
         {
-            _closeButton.onClick.AddListener(Hide);
+            _closeButton.onClick.AddListener(OnCloseClick);
             _restartButton.onClick.AddListener(RestartGame);
             _exitButton.onClick.AddListener(ExitGame);
+        }
+
+        private void OnCloseClick()
+        {
+            onCloseScreenClick?.Invoke();
         }
         
         private void ExitGame()
@@ -23,7 +31,6 @@ namespace UI
 
         public override void Show()
         {
-            Debug.Log("show");
             base.Show();
             Init();
         }

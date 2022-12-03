@@ -1,4 +1,6 @@
+using System;
 using Configs;
+using UI;
 using UnityEngine;
 
 namespace States
@@ -7,10 +9,12 @@ namespace States
     {
         public InputState(Core core) : base(core) {}
 
+        public static event Action onMoveCountChang;
         public override void OnEnter()
         {
-            if(GameConfig.isVictory) ChangeState(new VictoryState(_core));
             Debug.Log("InputState");
+            
+            //if(GameConfig.isVictory) ChangeState(new VictoryState(_core));
             if(GameConfig.firstSlot != null) ResetSelection();
             foreach (var slot in _core.slots)
             {
@@ -20,6 +24,8 @@ namespace States
                 slot.itemInSlot.onLeftSwipe += OnHorizontalSwipe;
                 slot.itemInSlot.onRightSwipe += OnHorizontalSwipe;
             }
+
+            GameScreen.onPauseButtonClick += OnPauseClick;
         }
 
         private void OnVerticalSwipe(Slot slot, int nextPosY)
@@ -37,6 +43,11 @@ namespace States
             ChangeState(new SwapState(_core));
         }
 
+        private void OnPauseClick()
+        {
+            ChangeState(new PauseState(_core));
+        }
+
         public override void OnExit()
         {
             foreach (var slot in _core.slots)
@@ -47,7 +58,10 @@ namespace States
                 slot.itemInSlot.onLeftSwipe -= OnHorizontalSwipe;
                 slot.itemInSlot.onRightSwipe -= OnHorizontalSwipe;
             }
+            GameScreen.onPauseButtonClick += OnPauseClick;
             GameConfig.isInput = true;
+            Model.movesCount++;
+            onMoveCountChang?.Invoke();
         }
 
         private void OnButtonClick(Slot slot)
