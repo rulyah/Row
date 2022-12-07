@@ -28,6 +28,7 @@ namespace States
         private void OnNextLevelClick()
         {
             GameConfig.currentLevel++;
+            _core.uiController.GameRestart();
             ChangeState(new SetLevelTaskState(_core, GameConfig.currentLevel));
         }
 

@@ -11,7 +11,7 @@ namespace UI
         [SerializeField] private CompleteScreen _completeScreen;
         public CompleteScreen completeScreen => _completeScreen;
         [SerializeField] private GameScreen _gameScreen;
-        public Stack<Screen> _screens;
+        private Stack<Screen> _screens;
 
         public void Init()
         {
@@ -20,6 +20,12 @@ namespace UI
             InputState.onMoveCountChang += OnMoveCountChang;
             RemoveMatchItemsState.onScoreChanged += OnScoreChanged;
             RemoveMatchItemsState.onGoalAmountChanged += OnGoalAmountChanged;
+            Screen.onGameRestart += GameRestart;
+        }
+
+        public void GameRestart()
+        {
+            _gameScreen.Restart();
         }
 
         private void OnMoveCountChang()
@@ -38,7 +44,7 @@ namespace UI
             _screens.Pop().Hide();
         }
 
-        private void OnScoreChanged(int value)
+        private void OnScoreChanged()
         {
             _gameScreen.ScoreRefresh();
         }

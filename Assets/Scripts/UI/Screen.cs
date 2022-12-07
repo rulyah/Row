@@ -15,7 +15,7 @@ namespace UI
             _canvasGroup.blocksRaycasts = true;
         }
 
-        public void RestartGame()
+        protected void RestartGame()
         {
             onGameRestart?.Invoke();
         }

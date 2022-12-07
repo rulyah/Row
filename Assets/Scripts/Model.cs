@@ -19,13 +19,7 @@ public class Model : MonoBehaviour
     {
         SetLevelTaskState.onSetTask += OnSetTask;
         matchList = new List<Slot>();
-        RemoveMatchItemsState.onScoreChanged += OnScoreChanged;
-        Screen.onGameRestart += Refresh;
-    }
-
-    private void OnScoreChanged(int value)
-    {
-        score += value;
+        Screen.onGameRestart += Restart;
     }
 
     private void OnSetTask(LevelConfig config)
@@ -38,9 +32,10 @@ public class Model : MonoBehaviour
         GameConfig._currentLevelConfig = config;
     }
 
-    private void Refresh()
+    private void Restart()
     {
-        matchList.Clear();
+        Debug.Log("is refresh");
+        //matchList.Clear();
         movesCount = 0;
         score = 0;
     }

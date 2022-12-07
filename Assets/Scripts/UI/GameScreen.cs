@@ -20,7 +20,6 @@ namespace UI
 
         public static event Action onPauseButtonClick;
 
-        private int _currentStarsCount;
         private int _firstGoalCount;
         private int _secondGoalCount;
         private float _currentSliderValue;
@@ -33,6 +32,17 @@ namespace UI
         private void PauseClick()
         {
             onPauseButtonClick?.Invoke();
+        }
+
+        public void Restart()
+        {
+            for (var i = 0; i < _stars.Count; i++)
+            {
+                if(_stars[i].isVisible == true) _stars[i].HideStar();
+            }
+            _slider.value = 0;
+            _score.text = "0";
+            _moves.text = "0";
         }
 
         public void SetTask(List<Sprite> sprites)
@@ -69,7 +79,6 @@ namespace UI
         {
             if (star.isVisible == true) return;
             star.ShowStar();
-            _currentStarsCount++;
         }
     }
 }

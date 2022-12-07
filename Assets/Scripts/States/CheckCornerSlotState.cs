@@ -11,9 +11,12 @@ namespace States
         {
             Debug.Log("CheckCornerSlotState");
 
-            if (Model.matchList.Any(t => t.posX is 1 or 8))
+            if (Model.matchList.Any(n => n.posX == 1))
             {
                 ShowItem(1, 8);
+            }
+            if (Model.matchList.Any(n => n.posX == 8))
+            {
                 ShowItem(8, 8);
             }
             ChangeState(new RemoveMatchItemsState(_core));

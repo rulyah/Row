@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Configs;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace States
 {
@@ -13,7 +13,7 @@ namespace States
         private List<Item> _hiddenItem;
         private int _scoreValue;
         
-        public static event Action<int> onScoreChanged;
+        public static event Action onScoreChanged;
         public static event Action onGoalAmountChanged;
 
         public override void OnEnter()
@@ -25,7 +25,7 @@ namespace States
 
         public override void OnExit()
         {
-            onScoreChanged?.Invoke(_scoreValue);
+            onScoreChanged?.Invoke();
         }
 
         private void RemoveItem()
@@ -35,7 +35,7 @@ namespace States
                 CheckLvlTask(Model.matchList[i]);
                 _hiddenItem.Add(Model.matchList[i].itemInSlot);
                 Model.matchList[i].RemoveItem();
-                _scoreValue += 10;
+                Model.score += 10;
                 ChangeItemInSlots(Model.matchList[i]);
             }
             Model.matchList.Clear();
@@ -78,6 +78,7 @@ namespace States
                 if(Model.secondGoalCount > 0) Model.secondGoalCount--;
             }
             onGoalAmountChanged?.Invoke();
+            if (Model.firstGoalCount == 0 && Model.secondGoalCount == 0) GameConfig.isVictory = true;
         }
 
         private IEnumerator ChangMatchItemsScale(Action action)
@@ -89,7 +90,7 @@ namespace States
                 {
                     cell.itemInSlot.transform.localScale += scale;
                 }
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(0.025f);
             }
             action?.Invoke();
         }

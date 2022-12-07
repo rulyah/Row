@@ -14,7 +14,7 @@ namespace States
         {
             Debug.Log("InputState");
             
-            //if(GameConfig.isVictory) ChangeState(new VictoryState(_core));
+            if(GameConfig.isVictory) ChangeState(new VictoryState(_core));
             if(GameConfig.firstSlot != null) ResetSelection();
             foreach (var slot in _core.slots)
             {
@@ -24,7 +24,6 @@ namespace States
                 slot.itemInSlot.onLeftSwipe += OnHorizontalSwipe;
                 slot.itemInSlot.onRightSwipe += OnHorizontalSwipe;
             }
-
             GameScreen.onPauseButtonClick += OnPauseClick;
         }
 
