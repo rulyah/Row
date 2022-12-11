@@ -1,17 +1,31 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Factory : MonoBehaviour
+public static class Factory
 {
-    [SerializeField] private Slot _slotPrefab;
-    [SerializeField] private Item _itemPrefab;
-    
-    public Slot CreateSlot()
+    private static readonly List<Item> _items = new List<Item>();
+
+    public static Slot CreateSlot(Slot slotPrefab)
     {
-        return Instantiate(_slotPrefab);
+        return Object.Instantiate(slotPrefab);
     }
 
-    public Item CreateItem()
+    public static Item CreateItem(Item itemPrefab)
     {
-        return Instantiate(_itemPrefab);
+        return Object.Instantiate(itemPrefab);
+    }
+
+    public static Item SetItem()
+    {
+        var item = _items[Random.Range(0, _items.Count)];
+        _items.Remove(item);
+        return item;
+    }
+
+    public static void RemoveItemInSlot(Slot slot)
+    {
+        _items.Add(slot.itemInSlot);
+        slot.RemoveItem();
+        Debug.Log(_items.Count.ToString());
     }
 }

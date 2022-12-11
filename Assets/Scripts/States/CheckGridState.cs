@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Commands;
 using Configs;
 using UnityEngine;
 
@@ -14,31 +15,30 @@ namespace States
         {
             Debug.Log("CheckGridState");
             _checkedSlots = new List<Slot>();
-            CheckLine();
-            CheckColumn();
-            if (GameConfig.isInput)
+            //CheckLine();
+            //CheckColumn();
+            CheckGridCommand.CheckGrid(_core, _checkedSlots);
+            if (Model.levelModel.matchList.Count >= 3)
             {
-                GameConfig.isInput = false;
-                if (Model.matchList.Count < 3)
+                if (Model.levelModel.isInput) Model.levelModel.isInput = false;
+                ChangeState(new CheckCornerSlotState(_core));
+            }
+            else
+            {
+                if (Model.levelModel.isInput)
                 {
-                    GameConfig.isWrongMove = true;
+                    Model.levelModel.isInput = false;
+                    Model.levelModel.isWrongMove = true;
                     ChangeState(new SwapState(_core));
                 }
                 else
                 {
-                    ChangeState(new CheckCornerSlotState(_core));
+                    ChangeState(new InputState(_core));
                 }
             }
-            else if (Model.matchList.Count < 3)
-            {
-                ChangeState(new InputState(_core));
-            }
-            else
-            {
-                ChangeState(new CheckCornerSlotState(_core));
-            }
         }
-        private void CheckLine()
+        
+        /*private void CheckLine()
         {
             for (var y = 1; y <= GameConfig.gridSize; y++)
             {
@@ -87,13 +87,13 @@ namespace States
                         {
                             for (var i = 0; i < _checkedSlots.Count; i++)
                             {
-                                Model.matchList.Add(_checkedSlots[i]);
+                                Model.matchList.Add(_checkedSlots[i]); 
                             }
                             _checkedSlots.Clear();
                         }
                     }
                 }
             }
-        }
+        }*/
     }
 }

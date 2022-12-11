@@ -12,12 +12,12 @@ namespace States
         public override void OnEnter()
         {
             Debug.Log("SwapState");
-            var item = GameConfig.firstSlot.itemInSlot;
-            GameConfig.secondSlot.itemInSlot.Move(GameConfig.firstSlot);
-            item.Move(GameConfig.secondSlot);
-            if (GameConfig.isWrongMove)
+            var item = Model.levelModel.firstSlot.itemInSlot;
+            Model.levelModel.secondSlot.itemInSlot.Move(Model.levelModel.firstSlot);
+            item.Move(Model.levelModel.secondSlot);
+            if (Model.levelModel.isWrongMove)
             {
-                GameConfig.isWrongMove = false;
+                Model.levelModel.isWrongMove = false;
                 _core.StartCoroutine(Delay(0.5f, () => ChangeState(new InputState(_core))));
             }
             else

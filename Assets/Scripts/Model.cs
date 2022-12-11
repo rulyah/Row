@@ -1,21 +1,19 @@
 using System.Collections.Generic;
 using Configs;
-using States;
-using UnityEngine;
-using Screen = UI.Screen;
 
-public class Model : MonoBehaviour
+public static class Model
 {
-    public static List<Slot> matchList;
-    
-    public static int movesCount;
-    public static int score;
-    public static int firstGoalSpriteId;
-    public static int secondGoalSpriteId;
-    public static int firstGoalCount;
-    public static int secondGoalCount;
+    public static int currentLevel = 1;
 
-    public void Init()
+
+    public static LevelModel levelModel;
+    //public static int movesCount;
+    //public static int score;
+    //public static int firstGoalSpriteId;
+    //public static int secondGoalSpriteId;
+    
+    
+    /*public void Init()
     {
         SetLevelTaskState.onSetTask += OnSetTask;
         matchList = new List<Slot>();
@@ -38,5 +36,5 @@ public class Model : MonoBehaviour
         //matchList.Clear();
         movesCount = 0;
         score = 0;
-    }
+    }*/
 }

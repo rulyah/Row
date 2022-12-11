@@ -15,9 +15,9 @@ namespace States
             HideSlot(8,8);
             HideSlot(8,1);
             
-            if (GameConfig.isNeedToCheckGrid)
+            if (Model.levelModel.isNeedToCheckGrid)
             {
-                GameConfig.isNeedToCheckGrid = false;
+                Model.levelModel.isNeedToCheckGrid = false;
                 ChangeState(new CheckGridState(_core));
             }
             else
@@ -29,7 +29,7 @@ namespace States
         private void HideSlot(int posX, int posY)
         {
             var slot = _core.slots.Find(n => n.posX == posX && n.posY == posY);
-            slot.SetNonInteractable();
+            slot.HideSlot();
             slot.itemInSlot.HideItem();
         }
     }

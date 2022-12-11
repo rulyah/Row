@@ -13,8 +13,8 @@ namespace States
 
             for (var i = 0; i < _core.slots.Count; i++)
             {
-                _core.slots[i].itemInSlot.spriteId = GameConfig._currentLevelConfig.spriteId[i];
-                _core.slots[i].itemInSlot.image.sprite = _core.sprites[_core.slots[i].itemInSlot.spriteId];
+                _core.slots[i].itemInSlot.spriteId = Model.levelModel.currentLevelConfig.spriteId[i];
+                _core.slots[i].itemInSlot.image.sprite = GameConfig.spritesConfig.sprites[_core.slots[i].itemInSlot.spriteId];
             }
             ChangeState(new HideCornerState(_core));
         }

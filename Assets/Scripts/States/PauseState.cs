@@ -11,7 +11,7 @@ namespace States
         public override void OnEnter()
         {
             Debug.Log("PauseState");
-            _core.uiController.ShowScreen(_core.uiController.pauseScreen);
+            UIController.instance.ShowScreen(UIController.instance.pauseScreen);
             Screen.onGameRestart += onGameRestart;
             PauseScreen.onCloseScreenClick += CloseScreen;
         }
@@ -20,7 +20,7 @@ namespace States
         {
             Screen.onGameRestart -= onGameRestart;
             PauseScreen.onCloseScreenClick -= CloseScreen;
-            _core.uiController.CloseLastScreen();
+            UIController.instance.CloseLastScreen();
         }
 
         private void CloseScreen()

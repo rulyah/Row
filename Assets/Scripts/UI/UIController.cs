@@ -6,6 +6,13 @@ namespace UI
 {
     public class UIController: MonoBehaviour
     {
+        public static UIController instance { get; private set; }
+
+        private void Awake()
+        {
+            instance = this;
+        }
+
         [SerializeField] private PauseScreen _pauseScreen;
         public PauseScreen pauseScreen => _pauseScreen;
         [SerializeField] private CompleteScreen _completeScreen;
@@ -54,9 +61,9 @@ namespace UI
             _gameScreen.GoalCountRefresh();
         }
 
-        public void SetTask(List<Sprite> sprites)
+        public void SetTask()
         {
-            _gameScreen.SetTask(sprites);
+            _gameScreen.SetTask();
         }
     }
 }

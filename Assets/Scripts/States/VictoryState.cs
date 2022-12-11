@@ -12,7 +12,7 @@ namespace States
         public override void OnEnter()
         {
             Debug.Log("VictoryState");
-            _core.uiController.ShowScreen(_core.uiController.completeScreen);
+            UIController.instance.ShowScreen(UIController.instance.completeScreen);
             CompleteScreen.onNextLevelClick += OnNextLevelClick;
             Screen.onGameRestart += onGameRestart;
         }
@@ -21,15 +21,15 @@ namespace States
         {
             CompleteScreen.onNextLevelClick -= OnNextLevelClick;
             Screen.onGameRestart -= onGameRestart;
-            _core.uiController.CloseLastScreen();
-            GameConfig.isVictory = false;
+            UIController.instance.CloseLastScreen();
+            Model.levelModel.isVictory = false;
         }
 
         private void OnNextLevelClick()
         {
-            GameConfig.currentLevel++;
-            _core.uiController.GameRestart();
-            ChangeState(new SetLevelTaskState(_core, GameConfig.currentLevel));
+            Model.currentLevel++;
+            UIController.instance.GameRestart();
+            ChangeState(new SetLevelTaskState(_core));
         }
 
         private void onGameRestart()

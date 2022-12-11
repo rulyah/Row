@@ -14,7 +14,6 @@ public class Slot : MonoBehaviour
     
     public void RemoveItem()
     {
-        //Destroy(itemInSlot.gameObject);
         itemInSlot.HideItem();
         itemInSlot = null;
     }
@@ -40,6 +39,11 @@ public class Slot : MonoBehaviour
     }
 
     public void SetNonInteractable()
+    {
+        _button.interactable = false;
+    }
+
+    public void HideSlot()
     {
         _button.interactable = false;
     }

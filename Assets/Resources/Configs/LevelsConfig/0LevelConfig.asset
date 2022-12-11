@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62760d63566c40d1bcf90b44f930cbf4, type: 3}
-  m_Name: 1LevelConfig
+  m_Name: 0LevelConfig
   m_EditorClassIdentifier: 
-  levelId: 1
+  levelId: 0
   firstTaskSpriteId: 3
   firstTaskCount: 5
   secondTaskSpriteId: 6

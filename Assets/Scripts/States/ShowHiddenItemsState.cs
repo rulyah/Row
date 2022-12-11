@@ -1,5 +1,4 @@
 using System.Linq;
-using Configs;
 using UnityEngine;
 
 namespace States
@@ -16,7 +15,7 @@ namespace States
                 slot.itemInSlot.Show();
                 slot.itemInSlot.transform.localScale = Vector3.one;
             }
-            GameConfig.isNeedToCheckGrid = true;
+            Model.levelModel.isNeedToCheckGrid = true;
             ChangeState(new HideCornerState(_core));
         }
     }

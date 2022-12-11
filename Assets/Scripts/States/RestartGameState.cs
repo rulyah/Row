@@ -10,7 +10,7 @@ namespace States
         public override void OnEnter()
         {
             Debug.Log("RestartGameState");
-            ChangeState(new SetLevelTaskState(_core, GameConfig.currentLevel));
+            ChangeState(new SetLevelTaskState(_core));
         }
     }
 }

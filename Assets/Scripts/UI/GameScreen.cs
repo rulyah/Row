@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Configs;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,9 +21,9 @@ namespace UI
 
         public static event Action onPauseButtonClick;
 
-        private int _firstGoalCount;
-        private int _secondGoalCount;
-        private float _currentSliderValue;
+        //private int _firstGoalCount;
+        //private int _secondGoalCount;
+        //private float _currentSliderValue;
         
         public void Init()
         {
@@ -45,33 +46,34 @@ namespace UI
             _moves.text = "0";
         }
 
-        public void SetTask(List<Sprite> sprites)
+        public void SetTask()
         {
-            _firstGoalImage.sprite = sprites[Model.firstGoalSpriteId];
-            _secondGoalImage.sprite = sprites[Model.secondGoalSpriteId];
-            _firstGoalText.text = Model.firstGoalCount.ToString();
-            _secondGoalText.text = Model.secondGoalCount.ToString();
-            _firstGoalCount = Model.firstGoalCount;
-            _secondGoalCount = Model.secondGoalCount;
+            _firstGoalImage.sprite = GameConfig.spritesConfig.sprites[Model.levelModel.currentLevelConfig.firstTaskSpriteId];
+            _secondGoalImage.sprite = GameConfig.spritesConfig.sprites[Model.levelModel.currentLevelConfig.secondTaskSpriteId];
+            _firstGoalText.text = Model.levelModel.firstGoalCount.ToString();
+            _secondGoalText.text = Model.levelModel.secondGoalCount.ToString();
+            //_firstGoalCount = Model.levelModel.firstGoalCount;
+            //_secondGoalCount = Model.levelModel.secondGoalCount;
         }
 
         public void ScoreRefresh()
         {
-            _score.text = Model.score.ToString();
+            _score.text = Model.levelModel.score.ToString();
         }
 
         public void MoveRefresh()
         {
-            _moves.text = Model.movesCount.ToString();
+            _moves.text = Model.levelModel.movesCount.ToString();
         }
 
         public void GoalCountRefresh()
         {
-            _firstGoalText.text = Model.firstGoalCount.ToString();
-            _secondGoalText.text = Model.secondGoalCount.ToString();
-            _slider.value = 1 - (float)(Model.firstGoalCount + Model.secondGoalCount) / (_firstGoalCount + _secondGoalCount);
+            _firstGoalText.text = Model.levelModel.firstGoalCount.ToString();
+            _secondGoalText.text = Model.levelModel.secondGoalCount.ToString();
+            _slider.value = 1 - (float)(Model.levelModel.firstGoalCount + Model.levelModel.secondGoalCount)
+                / (Model.levelModel.currentLevelConfig.firstTaskCount + Model.levelModel.currentLevelConfig.secondTaskCount);
             if(_slider.value > 0.25f) ShowStar(_stars[0]);
-            if(_slider.value > 0.6f) ShowStar(_stars[1]);
+            if(_slider.value > 0.55f) ShowStar(_stars[1]);
             if(_slider.value > 0.99f) ShowStar(_stars[2]);
         }
 

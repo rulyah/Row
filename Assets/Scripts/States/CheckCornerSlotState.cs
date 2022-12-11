@@ -1,4 +1,5 @@
 using System.Linq;
+using UI;
 using UnityEngine;
 
 namespace States
@@ -11,11 +12,11 @@ namespace States
         {
             Debug.Log("CheckCornerSlotState");
 
-            if (Model.matchList.Any(n => n.posX == 1))
+            if (Model.levelModel.matchList.Any(n => n.posX == 1))
             {
                 ShowItem(1, 8);
             }
-            if (Model.matchList.Any(n => n.posX == 8))
+            if (Model.levelModel.matchList.Any(n => n.posX == 8))
             {
                 ShowItem(8, 8);
             }

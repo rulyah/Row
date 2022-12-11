@@ -14,8 +14,8 @@ namespace States
         {
             Debug.Log("InputState");
             
-            if(GameConfig.isVictory) ChangeState(new VictoryState(_core));
-            if(GameConfig.firstSlot != null) ResetSelection();
+            if(Model.levelModel.isVictory) ChangeState(new VictoryState(_core));
+            if(Model.levelModel.firstSlot != null) ResetSelection();
             foreach (var slot in _core.slots)
             {
                 slot.onButtonClick += OnButtonClick;
@@ -30,15 +30,15 @@ namespace States
         private void OnVerticalSwipe(Slot slot, int nextPosY)
         {
             if (!CanSwap(nextPosY)) return;
-            GameConfig.firstSlot = slot;
-            GameConfig.secondSlot = _core.slots.Find(n => n.posX == GameConfig.firstSlot.posX && n.posY == nextPosY);
+            Model.levelModel.firstSlot = slot;
+            Model.levelModel.secondSlot = _core.slots.Find(n => n.posX == Model.levelModel.firstSlot.posX && n.posY == nextPosY);
             ChangeState(new SwapState(_core));
         }
         private void OnHorizontalSwipe(Slot slot, int nextPosX)
         {
             if (!CanSwap(nextPosX)) return;
-            GameConfig.firstSlot = slot; 
-            GameConfig.secondSlot = _core.slots.Find(n => n.posY == GameConfig.firstSlot.posY && n.posX == nextPosX);
+            Model.levelModel.firstSlot = slot; 
+            Model.levelModel.secondSlot = _core.slots.Find(n => n.posY == Model.levelModel.firstSlot.posY && n.posX == nextPosX);
             ChangeState(new SwapState(_core));
         }
 
@@ -58,25 +58,26 @@ namespace States
                 slot.itemInSlot.onRightSwipe -= OnHorizontalSwipe;
             }
             GameScreen.onPauseButtonClick += OnPauseClick;
-            GameConfig.isInput = true;
-            Model.movesCount++;
+            Model.levelModel.isInput = true;
+            Model.levelModel.movesCount++;
             onMoveCountChang?.Invoke();
         }
 
         private void OnButtonClick(Slot slot)
         {
-            if (GameConfig.firstSlot == null)
+            if (Model.levelModel.firstSlot == null)
             {
-                GameConfig.firstSlot = slot;
-                GameConfig.firstSlot.itemInSlot.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
+                Model.levelModel.firstSlot = slot;
+                Model.levelModel.firstSlot.itemInSlot.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
             }
             else
             {
-                GameConfig.secondSlot = slot;
-                GameConfig.firstSlot.itemInSlot.transform.localScale = Vector3.one;
-                if (GameConfig.firstSlot != GameConfig.secondSlot)
+                Model.levelModel.secondSlot = slot;
+                Model.levelModel.firstSlot.itemInSlot.transform.localScale = Vector3.one;
+                if (Model.levelModel.firstSlot != Model.levelModel.secondSlot)
                 {
-                    var distance = Vector3.Distance(GameConfig.firstSlot.transform.position, GameConfig.secondSlot.transform.position);
+                    var distance = Vector3.Distance(Model.levelModel.firstSlot.transform.position, 
+                        Model.levelModel.secondSlot.transform.position);
                     if (distance < 0.65f)
                     {
                         ChangeState(new SwapState(_core));
@@ -95,8 +96,8 @@ namespace States
         
         private void ResetSelection()
         {
-            GameConfig.firstSlot = null;
-            GameConfig.secondSlot = null;
+            Model.levelModel.firstSlot = null;
+            Model.levelModel.secondSlot = null;
         }
 
         private bool CanSwap(int nextPos)

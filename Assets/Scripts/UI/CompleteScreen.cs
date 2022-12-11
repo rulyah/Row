@@ -16,7 +16,7 @@ namespace UI
         {
             _restartButton.onClick.AddListener(RestartGame);
             _nextButton.onClick.AddListener(NextLvl);
-            _score.text = Model.score.ToString();
+            _score.text = Model.levelModel.score.ToString();
         }
 
         public override void Show()

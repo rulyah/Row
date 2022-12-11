@@ -10,7 +10,7 @@ namespace States
     {
         public RemoveMatchItemsState(Core core) : base(core) {}
 
-        private List<Item> _hiddenItem;
+        //private List<Item> _hiddenItem;
         private int _scoreValue;
         
         public static event Action onScoreChanged;
@@ -19,7 +19,7 @@ namespace States
         public override void OnEnter()
         {
             Debug.Log("MoveItemState");
-            _hiddenItem = new List<Item>();
+            //_hiddenItem = new List<Item>();
             _core.StartCoroutine(ChangMatchItemsScale(RemoveItem));
         }
 
@@ -30,16 +30,17 @@ namespace States
 
         private void RemoveItem()
         {
-            for (var i = Model.matchList.Count - 1; i >= 0; i--)
+            for (var i = Model.levelModel.matchList.Count - 1; i >= 0; i--)
             {
-                CheckLvlTask(Model.matchList[i]);
-                _hiddenItem.Add(Model.matchList[i].itemInSlot);
-                Model.matchList[i].RemoveItem();
-                Model.score += 10;
-                ChangeItemInSlots(Model.matchList[i]);
+                CheckLvlTask(Model.levelModel.matchList[i]);
+                Factory.RemoveItemInSlot(Model.levelModel.matchList[i]);
+                //_hiddenItem.Add(Model.matchList[i].itemInSlot);
+                //Model.matchList[i].RemoveItem();
+                Model.levelModel.score += 10;
+                ChangeItemInSlots(Model.levelModel.matchList[i]);
             }
-            Model.matchList.Clear();
-            ChangeState(new MoveItemsState(_core));
+            Model.levelModel.matchList.Clear();
+            ChangeState(new AddItemsState(_core));
         }
         
         private void ChangeItemInSlots(Slot slot)
@@ -51,16 +52,16 @@ namespace States
                 var nextSlot = GetSlotByPos(column[i].posX, column[i].posY - 1);
                 nextSlot.SetItem(column[i].itemInSlot);
             }
-            column[^1].SetItem(_hiddenItem[0]);
-            SetNewSprite(_hiddenItem[0]);
-            _hiddenItem.Remove(_hiddenItem[0]);
+            //column[^1].SetItem(_hiddenItem[0]);
+            //SetNewSprite(_hiddenItem[0]);
+            //_hiddenItem.Remove(_hiddenItem[0]);
         }
 
-        private void SetNewSprite(Item item)
-        {
-            item.SetRandomSpriteId();
-            item.image.sprite = _core.sprites[item.spriteId];
-        }
+        //private void SetNewSprite(Item item)
+        //{
+            //item.SetRandomSpriteId();
+            //item.image.sprite = _core.sprites[item.spriteId];
+        //}
 
         private Slot GetSlotByPos(int posX, int posY)
         {
@@ -69,24 +70,24 @@ namespace States
 
         private void CheckLvlTask(Slot slot)
         {
-            if (slot.itemInSlot.spriteId == Model.firstGoalSpriteId)
+            if (slot.itemInSlot.spriteId == Model.levelModel.currentLevelConfig.firstTaskSpriteId)
             {
-                if(Model.firstGoalCount > 0) Model.firstGoalCount--;
+                if(Model.levelModel.firstGoalCount > 0) Model.levelModel.firstGoalCount--;
             }
-            if (slot.itemInSlot.spriteId == Model.secondGoalSpriteId)
+            if (slot.itemInSlot.spriteId == Model.levelModel.currentLevelConfig.secondTaskSpriteId)
             {
-                if(Model.secondGoalCount > 0) Model.secondGoalCount--;
+                if(Model.levelModel.secondGoalCount > 0) Model.levelModel.secondGoalCount--;
             }
             onGoalAmountChanged?.Invoke();
-            if (Model.firstGoalCount == 0 && Model.secondGoalCount == 0) GameConfig.isVictory = true;
+            if (Model.levelModel.firstGoalCount == 0 && Model.levelModel.secondGoalCount == 0) Model.levelModel.isVictory = true;
         }
 
         private IEnumerator ChangMatchItemsScale(Action action)
         {
             var scale = new Vector3(0.05f, 0.05f);
-            while (Model.matchList[0].itemInSlot.transform.localScale.x < 1.3f)
+            while (Model.levelModel.matchList[0].itemInSlot.transform.localScale.x < 1.3f)
             {
-                foreach (var cell in Model.matchList)
+                foreach (var cell in Model.levelModel.matchList)
                 {
                     cell.itemInSlot.transform.localScale += scale;
                 }
