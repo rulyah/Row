@@ -2,18 +2,14 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
-public class Item : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class Item : MonoBehaviour, IBeginDragHandler, IEndDragHandler//, IDragHandler
 {
-    [SerializeField] private RectTransform _rectTransform;
-    
     public Image image;
     public int spriteId;
+    public bool isHide;
+    
     public Slot _parent;
-    public bool isHide = false;
-
-
     private int _previousSpriteId;
     private Vector3 _startDragPoint;
     private Vector3 _finishDragPoint;
@@ -22,8 +18,7 @@ public class Item : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     private float _ticks;
     private float _duration = 0.2f;
     private bool _isMoving;
-
-
+    
     public event Action<Slot, int> onUpSwipe;
     public event Action<Slot, int> onDownSwipe;
     public event Action<Slot, int> onLeftSwipe;
@@ -44,11 +39,11 @@ public class Item : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         _isMoving = true;
     }
     
-
     public void HideItem()
     {
         _parent = null;
         _previousSpriteId = spriteId;
+        transform.localScale = Vector3.one;
         image.color = new Color(255, 255, 255, 0);
         spriteId = -1;
         isHide = true;
@@ -60,13 +55,7 @@ public class Item : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         image.color = new Color(255, 255, 255, 255);
         isHide = false;
     }
-
-    public void SetRandomSpriteId()
-    {
-        spriteId = Random.Range(0, 7);
-        _previousSpriteId = spriteId;
-    }
-
+    
     public void OnBeginDrag(PointerEventData eventData)
     {
         _startDragPoint = Input.mousePosition;

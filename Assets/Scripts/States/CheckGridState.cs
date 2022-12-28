@@ -15,6 +15,7 @@ namespace States
         {
             Debug.Log("CheckGridState");
             _checkedSlots = new List<Slot>();
+            if(Model.levelModel.matchList.Count > 0) Model.levelModel.matchList.Clear();
             //CheckLine();
             //CheckColumn();
             CheckGridCommand.CheckGrid(_core, _checkedSlots);

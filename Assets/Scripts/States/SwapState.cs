@@ -15,6 +15,7 @@ namespace States
             var item = Model.levelModel.firstSlot.itemInSlot;
             Model.levelModel.secondSlot.itemInSlot.Move(Model.levelModel.firstSlot);
             item.Move(Model.levelModel.secondSlot);
+            
             if (Model.levelModel.isWrongMove)
             {
                 Model.levelModel.isWrongMove = false;

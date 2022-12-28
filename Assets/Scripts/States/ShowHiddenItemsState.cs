@@ -13,7 +13,6 @@ namespace States
             foreach (var slot in _core.slots.Where(slot => slot.itemInSlot.isHide))
             {
                 slot.itemInSlot.Show();
-                slot.itemInSlot.transform.localScale = Vector3.one;
             }
             Model.levelModel.isNeedToCheckGrid = true;
             ChangeState(new HideCornerState(_core));

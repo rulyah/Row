@@ -4,6 +4,7 @@ using Configs;
 public class LevelModel
 {
     public List<Slot> matchList;
+    public List<Item> hiddenItems;
 
     public int movesCount;
     public int score;
@@ -21,5 +22,6 @@ public class LevelModel
     public LevelModel()
     {
         matchList = new List<Slot>();
+        hiddenItems = new List<Item>();
     }
 }

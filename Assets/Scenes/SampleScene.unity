@@ -7401,7 +7401,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e4387f5d8914ae9af70ad6edd32dbf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _uiController: {fileID: 942236806}
   slots: []
 --- !u!1 &1671738389
 GameObject:

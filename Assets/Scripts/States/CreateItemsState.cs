@@ -1,4 +1,3 @@
-using Commands;
 using Configs;
 using UnityEngine;
 
@@ -14,11 +13,8 @@ namespace States
             for (var i = 0; i < _core.slots.Count; i++)
             {
                 var item = Factory.CreateItem(GameConfig.itemPrefab);
-                SetItemCommand.SetItem(_core.slots[i], item);
-                //var item = _core.factory.CreateItem();
-                //item.SetParent(_core.slots[i]);
-                //item.transform.localPosition = Vector3.zero;
-                //_core.slots[i].SetItem(item);
+                item.SetParent(_core.slots[i]);
+                item.transform.localPosition = Vector3.zero;
             }
             ChangeState(new SetLevelTaskState(_core));
         }

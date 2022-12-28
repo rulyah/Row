@@ -1,10 +1,7 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public static class Factory
 {
-    private static readonly List<Item> _items = new List<Item>();
-
     public static Slot CreateSlot(Slot slotPrefab)
     {
         return Object.Instantiate(slotPrefab);
@@ -17,15 +14,14 @@ public static class Factory
 
     public static Item SetItem()
     {
-        var item = _items[Random.Range(0, _items.Count)];
-        _items.Remove(item);
+        var item = Model.levelModel.hiddenItems[Random.Range(0, Model.levelModel.hiddenItems.Count)];
+        Model.levelModel.hiddenItems.Remove(item);
         return item;
     }
 
-    public static void RemoveItemInSlot(Slot slot)
+    public static void RemoveItem(Item item)
     {
-        _items.Add(slot.itemInSlot);
-        slot.RemoveItem();
-        Debug.Log(_items.Count.ToString());
+        Model.levelModel.hiddenItems.Add(item);
+        item.HideItem();
     }
 }

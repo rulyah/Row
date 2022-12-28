@@ -31,16 +31,13 @@ public class Slot : MonoBehaviour
     public void SetItem(Item item)
     {
         itemInSlot = item;
+        //item.SetParent(this);
+        //item.transform.localPosition = Vector3.zero;
     }
     
     private void OnClick()
     {
         onButtonClick?.Invoke(this);
-    }
-
-    public void SetNonInteractable()
-    {
-        _button.interactable = false;
     }
 
     public void HideSlot()

@@ -15,7 +15,7 @@ namespace States
             {
                 slot.MoveItemToSlot();
             }
-            _core.StartCoroutine(Delay(0.2f, () => ChangeState(new HideCornerState(_core))));
+            _core.StartCoroutine(Delay(0.2f, () => ChangeState(new ShowHiddenItemsState(_core))));
         }
         
         private IEnumerator Delay(float waitTime, Action action)
