@@ -9,7 +9,6 @@ namespace States
 
         public override void OnEnter()
         {
-            Debug.Log("CreateItemsState");
             for (var i = 0; i < _core.slots.Count; i++)
             {
                 var item = Factory.CreateItem(GameConfig.itemPrefab);

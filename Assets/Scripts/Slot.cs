@@ -5,19 +5,13 @@ using UnityEngine.UI;
 public class Slot : MonoBehaviour
 {
     [SerializeField] private Button _button;
+    
     public Item itemInSlot;
-
     public int posX;
     public int posY;
     
     public event Action<Slot> onButtonClick;
     
-    public void RemoveItem()
-    {
-        itemInSlot.HideItem();
-        itemInSlot = null;
-    }
-
     public void MoveItemToSlot()
     {
         itemInSlot.Move(this);
@@ -31,8 +25,6 @@ public class Slot : MonoBehaviour
     public void SetItem(Item item)
     {
         itemInSlot = item;
-        //item.SetParent(this);
-        //item.transform.localPosition = Vector3.zero;
     }
     
     private void OnClick()

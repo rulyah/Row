@@ -1,6 +1,4 @@
 using System.Linq;
-using UI;
-using UnityEngine;
 
 namespace States
 {
@@ -10,16 +8,8 @@ namespace States
 
         public override void OnEnter()
         {
-            Debug.Log("CheckCornerSlotState");
-
-            if (Model.levelModel.matchList.Any(n => n.posX == 1))
-            {
-                ShowItem(1, 8);
-            }
-            if (Model.levelModel.matchList.Any(n => n.posX == 8))
-            {
-                ShowItem(8, 8);
-            }
+            if (Model.levelModel.matchList.Any(n => n.posX == 1)) ShowItem(1, 8);
+            if (Model.levelModel.matchList.Any(n => n.posX == 8)) ShowItem(8, 8);
             ChangeState(new RemoveMatchItemsState(_core));
         }
         

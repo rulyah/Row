@@ -1,6 +1,4 @@
-using Configs;
 using UI;
-using UnityEngine;
 using Screen = UI.Screen;
 
 namespace States
@@ -11,7 +9,6 @@ namespace States
 
         public override void OnEnter()
         {
-            Debug.Log("VictoryState");
             UIController.instance.ShowScreen(UIController.instance.completeScreen);
             CompleteScreen.onNextLevelClick += OnNextLevelClick;
             Screen.onGameRestart += onGameRestart;

@@ -1,6 +1,3 @@
-using Configs;
-using UnityEngine;
-
 namespace States
 {
     public class HideCornerState : State<Core>
@@ -9,7 +6,6 @@ namespace States
 
         public override void OnEnter()
         {
-            Debug.Log("HideCornerState");
             HideSlot(1,1);
             HideSlot(1,8);
             HideSlot(8,8);
@@ -20,10 +16,7 @@ namespace States
                 Model.levelModel.isNeedToCheckGrid = false;
                 ChangeState(new CheckGridState(_core));
             }
-            else
-            {
-                ChangeState(new InputState(_core));
-            }
+            else ChangeState(new InputState(_core));
         }
 
         private void HideSlot(int posX, int posY)

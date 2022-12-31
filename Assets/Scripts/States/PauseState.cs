@@ -1,5 +1,4 @@
 using UI;
-using UnityEngine;
 using Screen = UI.Screen;
 
 namespace States
@@ -10,7 +9,6 @@ namespace States
 
         public override void OnEnter()
         {
-            Debug.Log("PauseState");
             UIController.instance.ShowScreen(UIController.instance.pauseScreen);
             Screen.onGameRestart += onGameRestart;
             PauseScreen.onCloseScreenClick += CloseScreen;
@@ -27,6 +25,7 @@ namespace States
         {
             ChangeState(new InputState(_core));
         }
+        
         private void onGameRestart()
         {
             ChangeState(new RestartGameState(_core));

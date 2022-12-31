@@ -21,10 +21,6 @@ namespace UI
 
         public static event Action onPauseButtonClick;
 
-        //private int _firstGoalCount;
-        //private int _secondGoalCount;
-        //private float _currentSliderValue;
-        
         public void Init()
         {
             _pauseButton.onClick.AddListener(PauseClick);
@@ -52,8 +48,6 @@ namespace UI
             _secondGoalImage.sprite = GameConfig.spritesConfig.sprites[Model.levelModel.currentLevelConfig.secondTaskSpriteId];
             _firstGoalText.text = Model.levelModel.firstGoalCount.ToString();
             _secondGoalText.text = Model.levelModel.secondGoalCount.ToString();
-            //_firstGoalCount = Model.levelModel.firstGoalCount;
-            //_secondGoalCount = Model.levelModel.secondGoalCount;
         }
 
         public void ScoreRefresh()

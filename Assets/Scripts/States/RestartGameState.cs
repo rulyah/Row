@@ -1,6 +1,3 @@
-using Configs;
-using UnityEngine;
-
 namespace States
 {
     public class RestartGameState : State<Core>
@@ -9,7 +6,8 @@ namespace States
 
         public override void OnEnter()
         {
-            Debug.Log("RestartGameState");
+            Model.levelModel.score = 0;
+            Model.levelModel.movesCount = 0;
             ChangeState(new SetLevelTaskState(_core));
         }
     }

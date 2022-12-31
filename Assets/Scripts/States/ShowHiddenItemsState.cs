@@ -1,5 +1,4 @@
 using System.Linq;
-using UnityEngine;
 
 namespace States
 {
@@ -9,7 +8,6 @@ namespace States
 
         public override void OnEnter()
         {
-            Debug.Log("ShowHiddenItemsState");
             foreach (var slot in _core.slots.Where(slot => slot.itemInSlot.isHide))
             {
                 slot.itemInSlot.Show();

@@ -12,12 +12,11 @@ namespace States
                 if(slot != null) MoveDownItems(slot);
                 if(slot == null) break;
             }
-            ChangeState(new MoveItemsState(_core));
+            ChangeState(new PlayMoveItemsState(_core));
         }
         
         private void MoveDownItems(Slot slot)
         {
-            if (slot == null) return;
             if (slot.posY == 13)
             {
                 slot.itemInSlot = Factory.SetItem();

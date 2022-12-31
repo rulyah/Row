@@ -12,11 +12,8 @@ namespace States
         public static event Action onMoveCountChang;
         public override void OnEnter()
         {
-            Debug.Log("InputState");
-            
-            if(Model.levelModel.isVictory) ChangeState(new VictoryState(_core));
             if(Model.levelModel.firstSlot != null) ResetSelection();
-            foreach (var slot in _core.slots)
+            foreach (var slot in _core.slots.FindAll(n => n.posX <= GameConfig.gridSize && n.posY <= GameConfig.gridSize))
             {
                 slot.onButtonClick += OnButtonClick;
                 slot.itemInSlot.onDownSwipe += OnVerticalSwipe;
@@ -25,6 +22,7 @@ namespace States
                 slot.itemInSlot.onRightSwipe += OnHorizontalSwipe;
             }
             GameScreen.onPauseButtonClick += OnPauseClick;
+            if(Model.levelModel.isVictory) ChangeState(new VictoryState(_core));
         }
 
         private void OnVerticalSwipe(Slot slot, int nextPosY)
@@ -32,13 +30,16 @@ namespace States
             if (!CanSwap(nextPosY)) return;
             Model.levelModel.firstSlot = slot;
             Model.levelModel.secondSlot = _core.slots.Find(n => n.posX == Model.levelModel.firstSlot.posX && n.posY == nextPosY);
+            Model.levelModel.movesCount++;
             ChangeState(new SwapState(_core));
         }
+        
         private void OnHorizontalSwipe(Slot slot, int nextPosX)
         {
             if (!CanSwap(nextPosX)) return;
             Model.levelModel.firstSlot = slot; 
             Model.levelModel.secondSlot = _core.slots.Find(n => n.posY == Model.levelModel.firstSlot.posY && n.posX == nextPosX);
+            Model.levelModel.movesCount++;
             ChangeState(new SwapState(_core));
         }
 
@@ -49,7 +50,7 @@ namespace States
 
         public override void OnExit()
         {
-            foreach (var slot in _core.slots)
+            foreach (var slot in _core.slots.FindAll(n => n.posX <= GameConfig.gridSize && n.posY <= GameConfig.gridSize))
             {
                 slot.onButtonClick -= OnButtonClick;
                 slot.itemInSlot.onDownSwipe -= OnVerticalSwipe;
@@ -59,7 +60,6 @@ namespace States
             }
             GameScreen.onPauseButtonClick += OnPauseClick;
             Model.levelModel.isInput = true;
-            Model.levelModel.movesCount++;
             onMoveCountChang?.Invoke();
         }
 
@@ -80,17 +80,12 @@ namespace States
                         Model.levelModel.secondSlot.transform.position);
                     if (distance < 0.65f)
                     {
+                        Model.levelModel.movesCount++;
                         ChangeState(new SwapState(_core));
                     }
-                    else
-                    {
-                        ResetSelection();
-                    }
+                    else ResetSelection();
                 }
-                else
-                {
-                    ResetSelection();
-                }
+                else ResetSelection();
             }
         }
         

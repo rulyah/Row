@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using States;
+using UI;
 using UnityEngine;
 
 public class Core : MonoBehaviour
@@ -10,16 +11,8 @@ public class Core : MonoBehaviour
     private void Start()
     {
         slots = new List<Slot>(104);
+        UIController.instance.Init();
         _stateMachine = new StateMachine<Core>(new LoadConfigsState(this));
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            //Model.isVictory = true;
-            //Debug.Log(Model.isVictory.ToString());
-        }
     }
 }
 

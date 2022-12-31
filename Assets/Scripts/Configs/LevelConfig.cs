@@ -12,7 +12,6 @@ namespace Configs
         public int secondTaskSpriteId;
         public int secondTaskCount;
 
-        public List<int> spriteId = new List<int>();
-        
+        public List<int> spriteId;
     }
 }

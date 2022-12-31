@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Configs;
 using UnityEngine;
 
 namespace States
@@ -11,7 +10,6 @@ namespace States
 
         public override void OnEnter()
         {
-            Debug.Log("SwapState");
             var item = Model.levelModel.firstSlot.itemInSlot;
             Model.levelModel.secondSlot.itemInSlot.Move(Model.levelModel.firstSlot);
             item.Move(Model.levelModel.secondSlot);
@@ -21,10 +19,7 @@ namespace States
                 Model.levelModel.isWrongMove = false;
                 _core.StartCoroutine(Delay(0.5f, () => ChangeState(new InputState(_core))));
             }
-            else
-            {
-                _core.StartCoroutine(Delay(0.5f, () => ChangeState(new CheckGridState(_core))));
-            }
+            else _core.StartCoroutine(Delay(0.5f, () => ChangeState(new CheckGridState(_core))));
         }
 
         private IEnumerator Delay(float waitTime, Action action)

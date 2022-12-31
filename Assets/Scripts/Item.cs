@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Item : MonoBehaviour, IBeginDragHandler, IEndDragHandler//, IDragHandler
+public class Item : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     public Image image;
     public int spriteId;

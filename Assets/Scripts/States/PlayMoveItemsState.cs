@@ -4,13 +4,12 @@ using UnityEngine;
 
 namespace States
 {
-    public class MoveItemsState : State<Core>
+    public class PlayMoveItemsState : State<Core>
     {
-        public MoveItemsState(Core core) : base(core) {}
+        public PlayMoveItemsState(Core core) : base(core) {}
 
         public override void OnEnter()
         {
-            Debug.Log("MoveItemsState");
             foreach (var slot in _core.slots)
             {
                 slot.MoveItemToSlot();

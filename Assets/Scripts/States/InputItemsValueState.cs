@@ -1,5 +1,4 @@
 using Configs;
-using UnityEngine;
 
 namespace States
 {
@@ -9,8 +8,6 @@ namespace States
 
         public override void OnEnter()
         {
-            Debug.Log("InputItemsValueState");
-
             for (var i = 0; i < _core.slots.Count; i++)
             {
                 _core.slots[i].itemInSlot.spriteId = Model.levelModel.currentLevelConfig.spriteId[i];

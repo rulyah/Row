@@ -13,7 +13,6 @@ namespace States
 
         public override void OnEnter()
         {
-            Debug.Log("RemoveMatchItemsState");
             _core.StartCoroutine(ChangMatchItemsScale(() =>
             {
                 for (var i = 0; i < Model.levelModel.matchList.Count; i++)

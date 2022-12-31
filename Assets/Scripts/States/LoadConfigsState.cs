@@ -9,7 +9,6 @@ namespace States
 
         public override void OnEnter()
         {
-            Debug.Log("LoadConfigsState");
             Model.levelModel = new LevelModel();
             GameConfig.spritesConfig = Resources.Load<SpritesConfig>("Configs/SpritesConfig/SpritesConfig");
             GameConfig.levelConfig = Resources.LoadAll<LevelConfig>("Configs/LevelsConfig");
