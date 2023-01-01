@@ -27,6 +27,8 @@ namespace States
         private void OnNextLevelClick()
         {
             Model.currentLevel++;
+            Model.levelModel.score = 0;
+            Model.levelModel.movesCount = 0;
             UIController.instance.GameRestart();
             ChangeState(new SetLevelTaskState(_core));
         }
