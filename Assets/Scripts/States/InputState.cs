@@ -85,7 +85,11 @@ namespace States
                     }
                     else ResetSelection();
                 }
-                else ResetSelection();
+                else
+                {
+                    AudioController.instance.Play(GameConfig.soundsConfig.wrongMoveSound);
+                    ResetSelection();
+                }
             }
         }
         

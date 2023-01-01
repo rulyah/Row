@@ -1,3 +1,4 @@
+using Configs;
 using UI;
 using Screen = UI.Screen;
 
@@ -9,6 +10,7 @@ namespace States
 
         public override void OnEnter()
         {
+            AudioController.instance.Play(GameConfig.soundsConfig.victorySound);
             UIController.instance.ShowScreen(UIController.instance.completeScreen);
             CompleteScreen.onNextLevelClick += OnNextLevelClick;
             Screen.onGameRestart += onGameRestart;

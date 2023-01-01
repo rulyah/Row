@@ -12,6 +12,7 @@ public class Core : MonoBehaviour
     {
         slots = new List<Slot>(104);
         UIController.instance.Init();
+        AudioController.instance.Init();
         _stateMachine = new StateMachine<Core>(new LoadConfigsState(this));
     }
 }

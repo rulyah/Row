@@ -11,6 +11,7 @@ namespace States
         {
             Model.levelModel = new LevelModel();
             GameConfig.spritesConfig = Resources.Load<SpritesConfig>("Configs/SpritesConfig/SpritesConfig");
+            GameConfig.soundsConfig = Resources.Load<SoundsConfig>("Configs/SoundsConfig/SoundConfig");
             GameConfig.levelConfig = Resources.LoadAll<LevelConfig>("Configs/LevelsConfig");
             GameConfig.slotPrefab = Resources.Load<Slot>("Prefabs/Slot");
             GameConfig.itemPrefab = Resources.Load<Item>("Prefabs/Item");

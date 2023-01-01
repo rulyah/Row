@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Configs;
 using UnityEngine;
 
 namespace States
@@ -22,6 +23,7 @@ namespace States
                     Model.levelModel.matchList[i].itemInSlot = null;
                     Model.levelModel.score += 10;
                 }
+                AudioController.instance.Play(GameConfig.soundsConfig.burningSound);
                 ChangeState(new MoveToMissingState(_core));
             }));
         }
