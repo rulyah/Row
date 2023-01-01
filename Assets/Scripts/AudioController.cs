@@ -16,7 +16,7 @@ public class AudioController : MonoBehaviour
     public void Init()
     {
         PauseScreen.onSongVolumeChange += OnSongVolumeChange;
-        PauseScreen.onSongVolumeChange += OnSoundVolumeChange;
+        PauseScreen.onSoundVolumeChange += OnSoundVolumeChange;
     }
 
     public void Play(AudioClip audioClip)
@@ -34,9 +34,9 @@ public class AudioController : MonoBehaviour
         _sound.mute = !isPlaying;
     }
 
-    /*public void DeInit()
+    public void DeInit()
     {
         PauseScreen.onSongVolumeChange -= OnSongVolumeChange;
-        PauseScreen.onSongVolumeChange -= OnSoundVolumeChange;
-    }*/
+        PauseScreen.onSoundVolumeChange -= OnSoundVolumeChange;
+    }
 }

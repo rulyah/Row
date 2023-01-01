@@ -62,7 +62,6 @@ namespace UI
             Init();
         }
         
-
         public override void Hide()
         {
             _closeButton.onClick.RemoveListener(Hide);
